@@ -12,7 +12,7 @@ class agendamentosServices{
     }
 
     getId(id: number){
-        return api.get<IAgendamento>("/agendamento/" + id);
+        return api.get<IAgendamento>("/agendamento/id=" + id);
     }
 
     create(data: IAgendamento){

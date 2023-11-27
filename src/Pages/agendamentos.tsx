@@ -4,11 +4,14 @@ import './agendamentos.css';
 import agendamentosServices from "../services/agendamentosServices";
 import Cadastrar from "../modais/cadastrar";
 import Visualizar from "../modais/visualizar";
+import image from '../iconpencil.png';
 
 
 export default function Inicial(){
 
     const [agendamento, setAgendamento ] = useState<IAgendamento[]>([]);
+    const [agendamentoSelecionado, setAgendamentoSelecionado] = useState<IAgendamento | null>(null);
+
 
     const diasDaSemana = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
     const [mesAtual, setMesAtual] = useState(new Date());
@@ -22,8 +25,10 @@ export default function Inicial(){
         setmodal(show);
     }
 
-    const modalVisualizar = (show: boolean) => {
-        setmodal(show);
+    const modalVisualizar = (show: boolean, agendamento?: IAgendamento) => {
+        setmodalvisu(show);
+        setAgendamentoSelecionado(agendamento || null);
+
     }
 
  
@@ -71,8 +76,10 @@ export default function Inicial(){
         if(selecionado){
             const atualizarDia = diaSelecionado.filter((diasSelecionado) => diasSelecionado.getTime() !== dia.getTime())
             setDiaSelecionado(atualizarDia);
+            setAgendamentoSelecionado(null);
         } else{
             setDiaSelecionado([dia]);
+            setAgendamentoSelecionado(agendamentoSelecionado);
         }
     }
 
@@ -147,7 +154,9 @@ export default function Inicial(){
                                     <td>{agendamentos.servico}</td>
                                     <td>R$ {agendamentos.valor}</td>
                                     <td>
-                                        <button onClick={() => modalVisualizar(true)}></button>
+                                        <button className="btnmodel" onClick={() => modalVisualizar(true, agendamentos)}>
+                                            <img src={image} alt="botao" />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -156,8 +165,8 @@ export default function Inicial(){
                 </div>
                 ))}
             </div>
-            {/* <Cadastrar visualizar={modal} fechar={() => modalCadastro(false)} agendamento={null} />
-            <Visualizar visualizar={modalvisu} fechar={() => modalVisualizar(false)} agendamento={null}/> */}
+            <Cadastrar visualizar={modal} fechar={() => modalCadastro(false)} agendamento={null} />
+            <Visualizar visualizar={modalvisu} fechar={() => modalVisualizar(false)} agendamento={agendamentoSelecionado}/>
         </div>
     )
 }

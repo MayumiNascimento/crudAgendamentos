@@ -81,3 +81,9 @@
 .addAgendamento:hover{
     background-color: #D8EDF2;
 }
+
+.btnmodel {
+    background: none;
+    border: none;
+
+}

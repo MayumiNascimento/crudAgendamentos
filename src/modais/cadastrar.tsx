@@ -75,13 +75,13 @@ export default function Cadastrar({visualizar, fechar, agendamento}: IProps){
             <ModalHeader toggle={fechar}>Cadastrar Agendamento</ModalHeader>
             <ModalBody>
                 <form onSubmit={submit}>
-                    <label htmlFor="">Serviço</label>
-                    <input type="text" name="" 
+                    <label htmlFor="servico">Serviço</label>
+                    <input type="text" name="servico" 
                         value={servico} 
                         onChange={(e) => setServico(e.target.value)} 
                         className="form-control" />
-                    <label htmlFor="">Cliente</label>
-                    <input type="text" name="" 
+                    <label htmlFor="cliente">Cliente</label>
+                    <input type="text" name="cliente" 
                     value={cliente} 
                     onChange={(e) => setcliente(e.target.value)} 
                     className="form-control"/>
@@ -89,34 +89,34 @@ export default function Cadastrar({visualizar, fechar, agendamento}: IProps){
                     <div className="row">
                         <div className="col">
 
-                            <label htmlFor="">Hora inicial</label>
-                            <input type="time" name="" 
+                            <label htmlFor="hinicial">Hora inicial</label>
+                            <input type="time" name="hinicial" 
                             value={hinicial} 
                             onChange={(e) => sethinicial(e.target.value)}
                             className="form-control" />
                         </div>
                         <div className="col">
-                            <label htmlFor="">Término</label>
-                            <input type="time" name="" 
+                            <label htmlFor="hfinal">Término</label>
+                            <input type="time" name="hfinal" 
                             value={hfinal} 
                             onChange={(e) => sethfinal(e.target.value)}
                             className="form-control" />
                         </div>
                     </div>
 
-                    <label htmlFor="">Dia</label>
-                    <input type="date" name="" 
+                    <label htmlFor="dia">Dia</label>
+                    <input type="date" name="dia" 
                     value={dia} 
                     onChange={(e) => setdia(e.target.value)}
                     className="form-control" />
-                    <label htmlFor="">Descrição</label>
-                    <textarea name="descricao" id="" 
+                    <label htmlFor="descricao">Descrição</label>
+                    <textarea name="descricao" id="descricao" 
                     value={descricao} 
                     onChange={(e) => setdescricao(e.target.value)}
                     className="form-control">
                     </textarea>
-                    <label htmlFor="" className="label-control">Valor </label>
-                    <input type="text" name="" 
+                    <label htmlFor="valor" className="label-control">Valor </label>
+                    <input type="number" name="valor" 
                     value={valor} 
                     onChange={(e) => setvalor(parseInt(e.target.value))}
                     className="form-control" />
@@ -124,8 +124,8 @@ export default function Cadastrar({visualizar, fechar, agendamento}: IProps){
                 </form>
             </ModalBody>
             <ModalFooter>
-                <button onClick={submit}>Agendar</button>
-                <button onClick={fechar}>Cancelar</button>
+                <button className="btn btn-success" onClick={submit}>Agendar</button>
+                <button className="btn btn-light"onClick={fechar}>Cancelar</button>
             </ModalFooter>
         </Modal>
     )
